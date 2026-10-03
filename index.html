@@ -21,6 +21,15 @@
         <h1>AUSTRALIAN CULTURAL EVENTS 2026</h1>
 
         <h2>Where are Events Held?</h2>
+        <div id="location-dot-map"></div>
+
+        <script type="text/javascript">
+            var spec = "js/cities-symbol-map.vg.json"; 
+            // Using {"actions": false} disables the top-right options menu 
+            // Mercator projection used since Australia's distortion isn't too severe
+            vegaEmbed('#location-dot-map', spec, { "actions": false }).then(function(result){
+            }).catch(console.error); 
+        </script>
 
         <h2>What Events are Held?</h2>
 

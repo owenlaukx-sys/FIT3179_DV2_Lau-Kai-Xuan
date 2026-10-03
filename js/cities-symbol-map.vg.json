@@ -1,0 +1,57 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json", 
+    "width": 700, 
+    "height": 500, 
+    "projection": {"type": "mercator"},
+    "layer": [
+        {
+            "data": {
+                "url": "js/australia_map.json", 
+                "format": {"type": "topojson", "feature": "ne_50m_admin_1_states_provinces"}
+            }, 
+            "mark": {"type": "geoshape", "fill": "white", "stroke": "gray"}
+        }, 
+
+        {
+            "data": {
+                "url": "data/Australian_Cultural_Events_List_2026.csv"
+            }, 
+
+            "transform": [
+                {
+                    "aggregate": [{"op": "count", "as": "Event_Count"}], 
+                    "groupby": ["City", "State", "City Latitude", "City Longitude"]
+                }
+            ], 
+
+            "mark": {
+                "type": "circle", 
+                "opacity": 0.7, 
+                "stroke": "black"
+            }, 
+            "encoding": {
+                "longitude": {
+                    "field": "City Longitude", 
+                    "type": "quantitative"
+                }, 
+                "latitude": {
+                    "field": "City Latitude", 
+                    "type": "quantitative"
+                }, 
+
+                "size": {
+                    "field": "Event_Count", 
+                    "type": "quantitative", 
+                    "scale": {"range": [50, 1000]}, 
+                    "legend": {"title": "Number of Events"}
+                }, 
+
+                "tooltip": [
+                    {"field": "City", "type": "nominal"}, 
+                    {"field": "State", "type": "nominal"}, 
+                    {"field": "Event_Count", "type": "quantitative", "title": "Number of Events"}
+                ]
+            }
+        }
+    ]
+}
