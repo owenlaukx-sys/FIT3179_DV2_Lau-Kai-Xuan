@@ -1,0 +1,53 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "width": 500,
+    "height": 400,
+    "data": {
+        "url": "data/state_event_proportions.csv"
+    }, 
+
+    "config": {
+        "view": {"stroke": "transparent"}
+    },
+
+    "layer": [
+        {
+            "description": "Lollipop Stick", 
+            "mark": {"type": "bar", "height": 2}, 
+            "encoding": {
+                "x": {
+                    "field": "Event_Count", 
+                    "type": "quantitative"
+                }, 
+
+                "y": {
+                    "field": "State", 
+                    "type": "ordinal"
+                }, 
+
+                "color": {"value": "blue"}
+            }
+        }, 
+        {
+            "description": "Lollipop Point", 
+            "mark": {"type": "point", "filled": true, "size": 150}, 
+            "encoding": {
+                "x": {
+                    "field": "Event_Count", 
+                    "type": "quantitative", 
+                    "axis": {"domain": false, "ticks": false, "labels": false, "grid": false}
+                }, 
+
+                "y": {
+                    "field": "State", 
+                    "type": "ordinal", 
+                    "axis": {
+                        "labelFontSize": 12
+                    }
+                }, 
+
+                "color": {"value": "blue"}
+            }
+        }
+    ]
+}

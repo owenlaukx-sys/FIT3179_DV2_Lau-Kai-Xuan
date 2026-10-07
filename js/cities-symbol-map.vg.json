@@ -1,12 +1,12 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v6.json", 
-    "width": 700, 
+    "width": 650, 
     "height": 500, 
     "projection": {"type": "mercator"},
     "layer": [
         {
             "data": {
-                "url": "js/australia_map.json", 
+                "url": "js/maps/australia_map.json", 
                 "format": {"type": "topojson", "feature": "ne_50m_admin_1_states_provinces"}
             }, 
             "mark": {"type": "geoshape", "fill": "white", "stroke": "gray"}
@@ -42,7 +42,7 @@
                 "size": {
                     "field": "Event_Count", 
                     "type": "quantitative", 
-                    "scale": {"range": [50, 1000]}, 
+                    "scale": {"range": [25, 1000]}, 
                     "legend": {"title": "Number of Events"}
                 }, 
 

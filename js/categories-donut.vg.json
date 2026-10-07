@@ -1,0 +1,60 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json", 
+    "width": 400, 
+    "height": 400, 
+    "title": "Categories of Cultural Events Held in Australia 2026",
+    "data": {
+        "url": "data/Australian_Cultural_Events_List_2026.csv"
+    }, 
+
+    "transform": [
+        {
+            "aggregate": [
+            {
+                "op": "count",
+                "as": "Event_Count"
+            }
+            ],
+            "groupby": ["Category"]
+        },
+        {
+            "joinaggregate": [
+            {
+                "op": "sum",
+                "field": "Event_Count",
+                "as": "Total_Events"
+            }
+            ]
+        },
+        {
+            "calculate": "datum['Event_Count'] / datum['Total_Events']",
+            "as": "Proportion"
+        }
+    ],
+
+    "mark": {
+        "type": "arc",
+        "innerRadius": 80,
+        "outerRadius": 160
+    },
+
+    "encoding": {
+        "theta": {
+            "field": "Event_Count",
+            "type": "quantitative",
+            "stack": true
+        }, 
+
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "legend": {"title": "Event Category"}
+        },
+
+        "tooltip": [
+            {"field": "Category", "type": "nominal"},
+            {"field": "Event_Count", "type": "quantitative", "title": "Number of Events"}, 
+            {"field": "Proportion", "type": "quantitative", "title": "Proportion", "format": ".1%"}
+        ]
+    }
+}
