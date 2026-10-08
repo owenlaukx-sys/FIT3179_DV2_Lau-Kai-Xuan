@@ -2,6 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
     "width": 500,
     "height": 400,
+    "title": "Number of Major Cultural Events by State in Australia 2026", 
     "data": {
         "url": "data/state_event_proportions.csv"
     }, 
@@ -19,34 +20,32 @@
                     "field": "Event_Count", 
                     "type": "quantitative"
                 }, 
-
                 "y": {
                     "field": "State", 
-                    "type": "ordinal"
+                    "type": "ordinal", 
+                    "sort": "-x"
                 }, 
-
-                "color": {"value": "blue"}
+                "color": {"value": "#4C78A8"}
             }
         }, 
         {
             "description": "Lollipop Point", 
-            "mark": {"type": "point", "filled": true, "size": 150}, 
+            "mark": {"type": "point", "filled": true, "size": 150, "opacity": 100}, 
             "encoding": {
                 "x": {
                     "field": "Event_Count", 
                     "type": "quantitative", 
                     "axis": {"domain": false, "ticks": false, "labels": false, "grid": false, "title": "Events"}
                 }, 
-
                 "y": {
                     "field": "State", 
                     "type": "ordinal", 
+                    "sort": "-x",
                     "axis": {
                         "labelFontSize": 12
                     }
                 }, 
-
-                "color": {"value": "blue"}
+                "color": {"value": "#4C78A8"}
             }
         }
     ]

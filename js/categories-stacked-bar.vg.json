@@ -1,0 +1,68 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+    "width": 700,
+    "height": 300,
+
+    "data": {
+        "url": "data/Australian_Cultural_Events_List_2026.csv"
+    },
+
+    "transform": [
+        {
+        "aggregate": [
+            {
+                "op": "count",
+                "as": "Event_Count"
+            }
+        ],
+        "groupby": [
+            "State",
+            "Category"
+        ]
+        }
+    ],
+
+    "mark": {
+        "type": "bar"
+    },
+
+    "encoding": {
+        "x": {
+            "field": "State",
+            "type": "nominal",
+            "title": "State",
+            "sort": "-y"
+        },
+
+        "y": {
+            "field": "Event_Count",
+            "type": "quantitative",
+            "title": "Number of Events"
+        },
+
+        "color": {
+            "field": "Category",
+            "type": "nominal",
+            "title": "Event Category"
+        },
+
+        "tooltip": [
+        {
+            "field": "State",
+            "type": "nominal",
+            "title": "State"
+        },
+        {
+            "field": "Category",
+            "type": "nominal",
+            "title": "Category"
+        },
+        {
+            "field": "Event_Count",
+            "type": "quantitative",
+            "title": "Number of Events"
+        }
+        ]
+    }
+}

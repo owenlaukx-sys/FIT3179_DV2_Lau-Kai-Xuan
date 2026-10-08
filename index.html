@@ -18,83 +18,104 @@
     </head>
 
     <body>
-        <h1>AUSTRALIAN CULTURAL EVENTS 2026</h1>
-
-        <h2>Where are Events Held?</h2>
-        <div id="location-citymap"></div>
-        <div>
-            <div id="adelaide"></div>
-            <div id="melbourne"></div>
-            <div id="sydney"></div>
+        <div class="main-title">
+            <h1>AUSTRALIAN CULTURAL EVENTS 2026</h1>
         </div>
-        
 
-        <div id="choropleth-map"></div>
-        <div id="state-lollipop-chart"></div>
-
-        <!------------- Script Section: Where are Events Held? ------------->
-
-        <script type="text/javascript">
-            var spec = "js/cities-symbol-map.vg.json"; 
-            // Using {"actions": false} disables the top-right options menu 
-            // Mercator projection used since Australia's distortion isn't too severe
-            vegaEmbed('#location-citymap', spec, { "actions": false }).then(function(result){
-            }).catch(console.error); 
-        </script>
-
-        <script type="text/javascript">
-            var spec = "js/adelaide-dot-map.vg.json"; 
-            // Using {"actions": false} disables the top-right options menu 
-            // Mercator projection used since Australia's distortion isn't too severe
-            vegaEmbed('#adelaide', spec, { "actions": false }).then(function(result){
-            }).catch(console.error); 
-        </script>
-
-        <script type="text/javascript">
-            var spec = "js/melbourne-dot-map.vg.json"; 
-            // Mercator is best to show distance 
-            vegaEmbed('#melbourne', spec, { "actions": false }).then(function(result){
-            }).catch(console.error); 
-        </script>
-        
-        <script type="text/javascript">
-            var spec = "js/sydney-dot-map.vg.json"; 
-            // Mercator is best to show distance 
-            vegaEmbed('#sydney', spec, { "actions": false }).then(function(result){
-            }).catch(console.error); 
-        </script>
-
-        <script type="text/javascript">
-            var spec2 = "js/state-choropleth-map.vg.json"; 
-            // Using {"actions": false} disables the top-right options menu 
-            // Mercator projection used since Australia's distortion isn't too severe
-            vegaEmbed('#choropleth-map', spec2, { "actions": false }).then(function(result){
-            }).catch(console.error); 
-        </script>
-
-        <script type="text/javascript">
-            var spec3 = "js/state-lollipop-chart.vg.json"; 
+        <main>
+            <h2 class="where-events">Where are Events Held?</h2>
+            <div>
+                <div id="location-citymap"></div>
+                <div id="city-bar"></div>
+            </div>
             
-            vegaEmbed('#state-lollipop-chart', spec3, { "actions": false }).then(function(result){
-            }).catch(console.error); 
-        </script>
-
-        <h2>What Events are Held?</h2>
-
-        <div id="category-donut"></div>
-
-        <!------------- Script Section: What Events are Held? ------------->
-        <script type="text/javascript">
-            var spec_donut = "js/categories-donut.vg.json"; 
+            <div>
+                <div id="adelaide"></div>
+                <div id="melbourne"></div>
+                <div id="sydney"></div>
+            </div>
             
-            vegaEmbed('#category-donut', spec_donut, { "actions": false }).then(function(result){
-            }).catch(console.error); 
-        </script>
+            <h3>States and Territories</h3>
+            <div id="choropleth-map"></div>
+            <div id="state-lollipop-chart"></div>
 
-        <h2>When are Events Held?</h2>
+            <!------------- Script Section: Where are Events Held? ------------->
+
+            <script type="text/javascript">
+                var spec = "js/cities-symbol-map.vg.json"; 
+                // Using {"actions": false} disables the top-right options menu 
+                // Mercator projection used since Australia's distortion isn't too severe
+                vegaEmbed('#location-citymap', spec, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
+
+            <script>
+                var spec = "js/cities-bar-chart.vg.json"; 
+                vegaEmbed('#city-bar', spec, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
+
+
+            <script type="text/javascript">
+                var spec = "js/adelaide-dot-map.vg.json"; 
+                vegaEmbed('#adelaide', spec, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
+
+            <script type="text/javascript">
+                var spec = "js/melbourne-dot-map.vg.json"; 
+                vegaEmbed('#melbourne', spec, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
+            
+            <script type="text/javascript">
+                var spec = "js/sydney-dot-map.vg.json"; 
+                vegaEmbed('#sydney', spec, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
+
+
+            <script type="text/javascript">
+                var spec2 = "js/state-choropleth-map.vg.json"; 
+                // Using {"actions": false} disables the top-right options menu 
+                // Mercator projection used since Australia's distortion isn't too severe
+                vegaEmbed('#choropleth-map', spec2, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
+
+            <script type="text/javascript">
+                var spec3 = "js/state-lollipop-chart.vg.json"; 
+                // Lollipop chart was based on code in https://www.daytodatastuff.co.uk/deneb/powerbi-deneb-lollipopcharts
+                vegaEmbed('#state-lollipop-chart', spec3, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
+
+            <h2>What Events are Held?</h2>
+
+            <div id="category-donut"></div>
+            <div id="category-stacked-bar"></div>
+
+            <!------------- Script Section: What Events are Held? ------------->
+            <script type="text/javascript">
+                var spec_donut = "js/categories-donut.vg.json"; 
+                
+                vegaEmbed('#category-donut', spec_donut, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
+
+            <script type="text/javascript">
+                var spec_donut = "js/categories-stacked-bar.vg.json"; 
+                
+                vegaEmbed('#category-stacked-bar', spec_donut, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
+
+            <h2>When are Events Held?</h2>
 
 
 
-        <!------------- Script Section: When are Events Held? ------------->
+            <!------------- Script Section: When are Events Held? ------------->
+        </main>
+        
     </body>
 </html>
