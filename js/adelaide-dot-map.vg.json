@@ -1,0 +1,101 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 400,
+  "height": 300,
+  "title": "Adelaide City 2026 Major Events",
+  "projection": "mercator", 
+  "layer": [
+    {
+        "description": "Background", 
+        "data": {
+            "values": [{}]
+        }, 
+        "mark": {
+            "type": "image",
+            "url": "images/Adelaide-map.png",
+            "align": "left",
+            "baseline": "top",
+            "x": 0,
+            "y": 0,
+            "width": 400,
+            "height": 300
+        }
+    },
+    {
+        "data": {
+            "url": "js/maps/Adelaide_Downtown_Map.json",
+            "format": {
+            "type": "topojson",
+            "feature": "ne_10m_admin_0_countries"
+            }
+        },
+        "mark": {
+            "type": "geoshape",
+            "fill": null, 
+            "stroke": "black"
+        }
+        },
+
+        {
+        "data": {
+            "url": "data/Australian_Cultural_Events_List_2026.csv"
+        },
+
+        "transform": [
+            {
+            "filter": {
+                "field": "City",
+                "oneOf": [
+                "Adelaide"
+                ]
+            }
+            },
+            {
+            "aggregate": [
+                {
+                "op": "count",
+                "as": "Event_Count"
+                }
+            ],
+            "groupby": [
+                "City",
+                "State",
+                "Event_Name", 
+                "Category", 
+                "Start_Date", 
+                "Venue", 
+                "Venue Latitude",
+                "Venue Longitude"
+            ]
+            }
+        ], 
+
+        "mark": {
+            "type": "circle",
+            "size": 100,
+            "opacity": 0.7, 
+            "stroke": "black"
+        },
+
+        "encoding": {
+            "longitude": {
+            "field": "Venue Longitude",
+            "type": "quantitative"
+            },
+            "latitude": {
+            "field": "Venue Latitude",
+            "type": "quantitative"
+            },
+
+            "tooltip": [
+            {"field": "Event_Name", "type": "nominal"},
+            {"field": "Venue", "type": "nominal"},
+            {"field": "Category", "type": "nominal"},
+            {"field": "State", "type": "nominal"},
+            {"field": "Start_Date", "type": "temporal"}
+            ]
+        }
+    }
+  ]
+}

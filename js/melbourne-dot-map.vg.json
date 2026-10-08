@@ -48,6 +48,7 @@
             "Event_Name", 
             "Category", 
             "Start_Date", 
+            "Venue", 
             "Venue Latitude",
             "Venue Longitude"
           ]
@@ -74,6 +75,7 @@
         "tooltip": [
           {"field": "Event_Name", "type": "nominal"},
           {"field": "Category", "type": "nominal"},
+          {"field": "Venue", "type": "nominal"},
           {"field": "State", "type": "nominal"},
           {"field": "Start_Date", "type": "temporal"}
         ]

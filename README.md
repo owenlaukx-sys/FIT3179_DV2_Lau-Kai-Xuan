@@ -36,7 +36,7 @@ The visualisation will explore the where, what and when about Australian cultura
 4. Calendar Heatmap of Event Density throughout Year 2026 (*Calendar Heatmap*)
 5. Secondary Comparison Chart for Number of Events Recorded by State (*Lollipop Chart*)
 6. Top 6 Longest-Running Events Duration of the Year 2026 (*Gantt Chart*)
-7. 
+7. Aboriginal / Indigenous Chart Events Location (*Radar Chart*)
 
 ### Idioms
 As a summary of the idioms used within this data visualisation, DV2 uses: 

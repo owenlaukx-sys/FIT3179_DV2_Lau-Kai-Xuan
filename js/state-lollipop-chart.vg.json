@@ -35,7 +35,7 @@
                 "x": {
                     "field": "Event_Count", 
                     "type": "quantitative", 
-                    "axis": {"domain": false, "ticks": false, "labels": false, "grid": false}
+                    "axis": {"domain": false, "ticks": false, "labels": false, "grid": false, "title": "Events"}
                 }, 
 
                 "y": {

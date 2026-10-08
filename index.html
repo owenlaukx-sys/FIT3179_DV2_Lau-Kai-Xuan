@@ -21,8 +21,9 @@
         <h1>AUSTRALIAN CULTURAL EVENTS 2026</h1>
 
         <h2>Where are Events Held?</h2>
-        <div id="location-dot-map"></div>
+        <div id="location-citymap"></div>
         <div>
+            <div id="adelaide"></div>
             <div id="melbourne"></div>
             <div id="sydney"></div>
         </div>
@@ -37,7 +38,15 @@
             var spec = "js/cities-symbol-map.vg.json"; 
             // Using {"actions": false} disables the top-right options menu 
             // Mercator projection used since Australia's distortion isn't too severe
-            vegaEmbed('#location-dot-map', spec, { "actions": false }).then(function(result){
+            vegaEmbed('#location-citymap', spec, { "actions": false }).then(function(result){
+            }).catch(console.error); 
+        </script>
+
+        <script type="text/javascript">
+            var spec = "js/adelaide-dot-map.vg.json"; 
+            // Using {"actions": false} disables the top-right options menu 
+            // Mercator projection used since Australia's distortion isn't too severe
+            vegaEmbed('#adelaide', spec, { "actions": false }).then(function(result){
             }).catch(console.error); 
         </script>
 
