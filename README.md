@@ -33,10 +33,10 @@ The visualisation will explore the where, what and when about Australian cultura
 1. Top 6 Cities with the Largest Cultural Event Numbers in Australia 2026 (*Bar Chart*)
 2. Donut Chart for Categories of Events (*Donut Chart*)
 3. Event Categories by State Bar Chart (*Stacked Bar Chart*)
-4. Calendar Heatmap of Event Density throughout Year 2026 (*Calendar Heatmap*)
+4. Monthly Calendar Heatmap of Event Density throughout Year 2026 (*Calendar Heatmap*)
 5. Secondary Comparison Chart for Number of Events Recorded by State (*Lollipop Chart*)
 6. Top 6 Longest-Running Events Duration of the Year 2026 (*Gantt Chart*)
-7. Aboriginal / Indigenous Chart Events Location (*Radar Chart*)
+7. Distribution of Arts, Sports and Aboriginal / Indigenous Events across States (*Radar Chart*)
 
 ### Idioms
 As a summary of the idioms used within this data visualisation, DV2 uses: 

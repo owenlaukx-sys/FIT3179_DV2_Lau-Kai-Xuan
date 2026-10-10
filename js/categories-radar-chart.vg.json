@@ -1,0 +1,493 @@
+
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+  "width": 600,
+  "height": 500,
+  "padding": 0, 
+  "autosize": {
+    "type": "pad",
+    "contains": "padding",
+    "resize": true
+  },
+  "background": "#FFFFFF",
+  "signals": [
+    {
+      "name": "plotCenterX",
+      "update": "width * 0.35"
+    },
+    {
+      "name": "plotCenterY",
+      "update": "height * 0.53"
+    },
+    {
+      "name": "radius",
+      "update": "min(width * 0.265, height * 0.32)"
+    },
+    {
+      "name": "stateAngleOffset",
+      "value": -1.5707963267948966
+    },
+    {
+      "name": "legendX",
+      "update": "width * 0.70"
+    },
+    {
+      "name": "legendY",
+      "update": "height * 0.39"
+    },
+    {
+      "name": "showArts",
+      "value": true,
+      "on": [
+        {
+          "events": "@artsLegendHit:click",
+          "update": "!showArts"
+        }
+      ]
+    },
+    {
+      "name": "showSports",
+      "value": true,
+      "on": [
+        {
+          "events": "@sportsLegendHit:click",
+          "update": "!showSports"
+        }
+      ]
+    },
+    {
+      "name": "showIndigenous",
+      "value": true,
+      "on": [
+        {
+          "events": "@indigenousLegendHit:click",
+          "update": "!showIndigenous"
+        }
+      ]
+    }
+  ],
+  "data": [
+    {
+      "name": "states",
+      "values": [
+        {"State": "Australian Capital Territory", "order": 0},
+        {"State": "New South Wales", "order": 1},
+        {"State": "Northern Territory", "order": 2},
+        {"State": "Queensland", "order": 3},
+        {"State": "South Australia", "order": 4},
+        {"State": "Tasmania", "order": 5},
+        {"State": "Victoria", "order": 6},
+        {"State": "Western Australia", "order": 7}
+      ]
+    },
+    {
+      "name": "counts",
+      "url": "data/radar_state_category_counts.csv",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "Event_Count": "number"
+        }
+      },
+      "transform": [
+        {
+          "type": "lookup",
+          "from": "states",
+          "key": "State",
+          "fields": ["State"],
+          "values": ["order"],
+          "as": ["order"]
+        },
+        {
+          "type": "formula",
+          "as": "angle",
+          "expr": "stateAngleOffset + datum.order * 2 * PI / 8"
+        },
+        {
+          "type": "formula",
+          "as": "px",
+          "expr": "plotCenterX + scale('radial', datum.Event_Count) * cos(datum.angle)"
+        },
+        {
+          "type": "formula",
+          "as": "py",
+          "expr": "plotCenterY + scale('radial', datum.Event_Count) * sin(datum.angle)"
+        },
+        {
+          "type": "collect",
+          "sort": {
+            "field": "order",
+            "order": "ascending"
+          }
+        }
+      ]
+    },
+    {
+      "name": "visibleCounts",
+      "source": "counts",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "(datum.Category === 'Arts & Culture' && showArts) || (datum.Category === 'Sports' && showSports) || (datum.Category === 'Indigenous' && showIndigenous)"
+        }
+      ]
+    },
+    {
+      "name": "radialGrid",
+      "values": [
+        {"value": 2},
+        {"value": 4},
+        {"value": 6},
+        {"value": 8}
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "radial",
+      "type": "linear",
+      "domain": [0, 8],
+      "range": [0, {"signal": "radius"}],
+      "zero": true,
+      "nice": false,
+      "clamp": true
+    },
+    {
+      "name": "categoryColor",
+      "type": "ordinal",
+      "domain": [
+        "Arts & Culture",
+        "Sports",
+        "Indigenous"
+      ],
+      "range": [
+        "#4C78A8",
+        "#F58518",
+        "#54A24B"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "text",
+      "name": "chartTitle",
+      "encode": {
+        "enter": {
+          "x": {"value": 0},
+          "y": {"value": 50},
+          "text": {"value": "Event Categories by State"},
+          "fontSize": {"value": 21},
+          "fontWeight": {"value": "bold"},
+          "fill": {"value": "#222222"}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "name": "gridCircles",
+      "from": {"data": "radialGrid"},
+      "encode": {
+        "enter": {
+          "x": {"signal": "plotCenterX"},
+          "y": {"signal": "plotCenterY"},
+          "shape": {"value": "circle"},
+          "size": {
+            "signal": "PI * pow(scale('radial', datum.value), 2)"
+          },
+          "fill": {"value": "#FFFFFF"},
+          "fillOpacity": {"value": 0},
+          "stroke": {"value": "#D9DDE3"},
+          "strokeWidth": {"value": 1}
+        }
+      }
+    },
+    {
+      "type": "rule",
+      "name": "stateSpokes",
+      "from": {"data": "states"},
+      "encode": {
+        "enter": {
+          "x": {"signal": "plotCenterX"},
+          "y": {"signal": "plotCenterY"},
+          "x2": {
+            "signal": "plotCenterX + radius * cos(stateAngleOffset + datum.order * 2 * PI / 8)"
+          },
+          "y2": {
+            "signal": "plotCenterY + radius * sin(stateAngleOffset + datum.order * 2 * PI / 8)"
+          },
+          "stroke": {"value": "#C8CDD4"},
+          "strokeWidth": {"value": 1}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "radialLabels",
+      "from": {"data": "radialGrid"},
+      "encode": {
+        "enter": {
+          "x": {"signal": "plotCenterX + 5"},
+          "y": {
+            "signal": "plotCenterY - scale('radial', datum.value) - 5"
+          },
+          "text": {"field": "value"},
+          "fontSize": {"value": 10},
+          "fill": {"value": "#777777"},
+          "align": {"value": "left"},
+          "baseline": {"value": "bottom"}
+        }
+      }
+    },
+    {
+      "type": "group",
+      "name": "categoryPolygons",
+      "from": {
+        "facet": {
+          "name": "categoryData",
+          "data": "visibleCounts",
+          "groupby": ["Category"]
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "name": "categoryFill",
+          "from": {"data": "categoryData"},
+          "sort": {
+            "field": "order",
+            "order": "ascending"
+          },
+          "encode": {
+            "enter": {
+              "x": {"field": "px"},
+              "y": {"field": "py"},
+              "interpolate": {"value": "linear-closed"},
+              "fill": {
+                "scale": "categoryColor",
+                "field": "Category"
+              },
+              "fillOpacity": {"value": 0.22},
+              "stroke": {
+                "scale": "categoryColor",
+                "field": "Category"
+              },
+              "strokeWidth": {"value": 2.5}
+            },
+            "update": {
+              "tooltip": {
+                "signal": "{'State': datum.State, 'Category': datum.Category, 'Event count': datum.Event_Count}"
+              }
+            }
+          }
+        },
+        {
+          "type": "symbol",
+          "name": "categoryPoints",
+          "from": {"data": "categoryData"},
+          "encode": {
+            "enter": {
+              "x": {"field": "px"},
+              "y": {"field": "py"},
+              "size": {"value": 75},
+              "shape": {"value": "circle"},
+              "fill": {
+                "scale": "categoryColor",
+                "field": "Category"
+              },
+              "stroke": {"value": "#FFFFFF"},
+              "strokeWidth": {"value": 1.2}
+            },
+            "update": {
+              "tooltip": {
+                "signal": "{'State': datum.State, 'Category': datum.Category, 'Event count': datum.Event_Count}"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "stateLabels",
+      "from": {"data": "states"},
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "plotCenterX + (radius + 18) * cos(stateAngleOffset + datum.order * 2 * PI / 8)"
+          },
+          "y": {
+            "signal": "plotCenterY + (radius + 18) * sin(stateAngleOffset + datum.order * 2 * PI / 8)"
+          },
+          "text": {"field": "State"},
+          "fontSize": {"value": 10},
+          "fontWeight": {"value": "bold"},
+          "fill": {"value": "#333333"},
+          "align": {
+            "signal": "cos(stateAngleOffset + datum.order * 2 * PI / 8) < -0.15 ? 'right' : cos(stateAngleOffset + datum.order * 2 * PI / 8) > 0.15 ? 'left' : 'center'"
+          },
+          "baseline": {
+            "signal": "sin(stateAngleOffset + datum.order * 2 * PI / 8) > 0.15 ? 'top' : sin(stateAngleOffset + datum.order * 2 * PI / 8) < -0.15 ? 'bottom' : 'middle'"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "legendTitle",
+      "encode": {
+        "enter": {
+          "x": {"signal": "legendX"},
+          "y": {"signal": "legendY - 35"},
+          "text": {"value": "Filter categories"},
+          "fontSize": {"value": 14},
+          "fontWeight": {"value": "bold"},
+          "fill": {"value": "#222222"}
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "name": "artsLegendHit",
+      "encode": {
+        "enter": {
+          "x": {"signal": "legendX - 12"},
+          "y": {"signal": "legendY - 14"},
+          "width": {"value": 225},
+          "height": {"value": 28},
+          "fill": {"value": "#FFFFFF"},
+          "fillOpacity": {"value": 0.01},
+          "cursor": {"value": "pointer"}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "name": "artsLegendSymbol",
+      "encode": {
+        "enter": {
+          "x": {"signal": "legendX"},
+          "y": {"signal": "legendY"},
+          "size": {"value": 110},
+          "fill": {"value": "#4C78A8"}
+        },
+        "update": {
+          "opacity": {"signal": "showArts ? 1 : 0.25"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "artsLegendText",
+      "encode": {
+        "enter": {
+          "x": {"signal": "legendX + 18"},
+          "y": {"signal": "legendY"},
+          "text": {"value": "Arts & Culture"},
+          "fontSize": {"value": 13},
+          "fill": {"value": "#333333"},
+          "baseline": {"value": "middle"},
+          "cursor": {"value": "pointer"}
+        },
+        "update": {
+          "opacity": {"signal": "showArts ? 1 : 0.4"}
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "name": "sportsLegendHit",
+      "encode": {
+        "enter": {
+          "x": {"signal": "legendX - 12"},
+          "y": {"signal": "legendY + 16"},
+          "width": {"value": 225},
+          "height": {"value": 28},
+          "fill": {"value": "#FFFFFF"},
+          "fillOpacity": {"value": 0.01},
+          "cursor": {"value": "pointer"}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "name": "sportsLegendSymbol",
+      "encode": {
+        "enter": {
+          "x": {"signal": "legendX"},
+          "y": {"signal": "legendY + 30"},
+          "size": {"value": 110},
+          "fill": {"value": "#F58518"}
+        },
+        "update": {
+          "opacity": {"signal": "showSports ? 1 : 0.25"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "sportsLegendText",
+      "encode": {
+        "enter": {
+          "x": {"signal": "legendX + 18"},
+          "y": {"signal": "legendY + 30"},
+          "text": {"value": "Sports"},
+          "fontSize": {"value": 13},
+          "fill": {"value": "#333333"},
+          "baseline": {"value": "middle"},
+          "cursor": {"value": "pointer"}
+        },
+        "update": {
+          "opacity": {"signal": "showSports ? 1 : 0.4"}
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "name": "indigenousLegendHit",
+      "encode": {
+        "enter": {
+          "x": {"signal": "legendX - 12"},
+          "y": {"signal": "legendY + 46"},
+          "width": {"value": 225},
+          "height": {"value": 28},
+          "fill": {"value": "#FFFFFF"},
+          "fillOpacity": {"value": 0.01},
+          "cursor": {"value": "pointer"}
+        }
+      }
+    },
+    {
+      "type": "symbol",
+      "name": "indigenousLegendSymbol",
+      "encode": {
+        "enter": {
+          "x": {"signal": "legendX"},
+          "y": {"signal": "legendY + 60"},
+          "size": {"value": 110},
+          "fill": {"value": "#54A24B"}
+        },
+        "update": {
+          "opacity": {"signal": "showIndigenous ? 1 : 0.25"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "name": "indigenousLegendText",
+      "encode": {
+        "enter": {
+          "x": {"signal": "legendX + 18"},
+          "y": {"signal": "legendY + 60"},
+          "text": {"value": "Indigenous"},
+          "fontSize": {"value": 13},
+          "fill": {"value": "#333333"},
+          "baseline": {"value": "middle"},
+          "cursor": {"value": "pointer"}
+        },
+        "update": {
+          "opacity": {"signal": "showIndigenous ? 1 : 0.4"}
+        }
+      }
+    }
+  ]
+}

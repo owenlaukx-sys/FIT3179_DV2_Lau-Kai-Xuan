@@ -94,6 +94,7 @@
 
             <div id="category-donut"></div>
             <div id="category-stacked-bar"></div>
+            <div id="category-radar"></div>
 
             <!------------- Script Section: What Events are Held? ------------->
             <script type="text/javascript">
@@ -107,6 +108,13 @@
                 var spec_donut = "js/categories-stacked-bar.vg.json"; 
                 
                 vegaEmbed('#category-stacked-bar', spec_donut, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
+
+            <script type="text/javascript">
+                var spec_radar = "js/categories-radar-chart.vg.json"; 
+                // Unlike the rest, this chart use Vega instead of Vega-lite as the rendering format
+                vegaEmbed('#category-radar', spec_radar, { "actions": false }).then(function(result){
                 }).catch(console.error); 
             </script>
 
