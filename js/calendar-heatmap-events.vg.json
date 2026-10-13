@@ -1,0 +1,219 @@
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Monthly Calendar Heatmap of Event Density - 2026",
+    "subtitle": "Daily count of cultural events active across Australia",
+    "anchor": "start",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "offset": 14
+  },
+  "data": {
+    "url": "data/event_density_daily_2026.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Date": "date",
+        "Event_Count": "number",
+        "Month_Number": "number",
+        "Day": "number",
+        "Weekday": "number",
+        "Week_Of_Month": "number"
+      }
+    }
+  },
+  "facet": {
+    "field": "Month",
+    "type": "ordinal",
+    "sort": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "header": {
+      "title": null,
+      "labelFontSize": 14,
+      "labelFontWeight": "bold",
+      "labelPadding": 8,
+      "labelOrient": "top"
+    }
+  },
+  "columns": 3,
+  "spec": {
+    "width": {
+      "step": 25
+    },
+    "height": {
+      "step": 23
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "rect",
+          "cornerRadius": 3,
+          "stroke": "#FFFFFF",
+          "strokeWidth": 2
+        },
+        "encoding": {
+          "x": {
+            "field": "Week_Of_Month",
+            "type": "ordinal",
+            "sort": [0, 1, 2, 3, 4, 5],
+            "axis": null,
+            "scale": {
+              "domain": [0, 1, 2, 3, 4, 5]
+            }
+          },
+          "y": {
+            "field": "Weekday_Label",
+            "type": "ordinal",
+            "sort": [
+              "Mon",
+              "Tue",
+              "Wed",
+              "Thu",
+              "Fri",
+              "Sat",
+              "Sun"
+            ],
+            "axis": {
+              "title": null,
+              "labelFontSize": 9,
+              "labelPadding": 4,
+              "ticks": false,
+              "domain": false
+            }
+          },
+          "color": {
+            "field": "Event_Count",
+            "type": "quantitative",
+            "scale": {
+              "domain": [0, 6],
+              "clamp": true,
+              "range": [
+                "#F1F5F9",
+                "#D9F0E3",
+                "#A8DFC0",
+                "#65BE8A",
+                "#278451",
+                "#14532D"
+              ]
+            },
+            "legend": {
+              "title": "Active events",
+              "orient": "bottom",
+              "direction": "horizontal",
+              "gradientLength": 220,
+              "gradientThickness": 12,
+              "labelFontSize": 10,
+              "titleFontSize": 11,
+              "format": "d"
+            }
+          },
+          "tooltip": [
+            {
+              "field": "Date",
+              "type": "temporal",
+              "title": "Date",
+              "format": "%a, %d %b %Y"
+            },
+            {
+              "field": "Event_Count",
+              "type": "quantitative",
+              "title": "Active events",
+              "format": "d"
+            }
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "fontSize": 10,
+          "fontWeight": "normal",
+          "baseline": "middle"
+        },
+        "encoding": {
+          "x": {
+            "field": "Week_Of_Month",
+            "type": "ordinal",
+            "sort": [0, 1, 2, 3, 4, 5],
+            "axis": null,
+            "scale": {
+              "domain": [0, 1, 2, 3, 4, 5]
+            }
+          },
+          "y": {
+            "field": "Weekday_Label",
+            "type": "ordinal",
+            "sort": [
+              "Mon",
+              "Tue",
+              "Wed",
+              "Thu",
+              "Fri",
+              "Sat",
+              "Sun"
+            ],
+            "axis": null
+          },
+          "text": {
+            "field": "Day",
+            "type": "quantitative",
+            "format": "d"
+          },
+          "color": {
+            "condition": {
+              "test": "datum.Event_Count >= 4",
+              "value": "#FFFFFF"
+            },
+            "value": "#1F2937"
+          },
+          "tooltip": [
+            {
+              "field": "Date",
+              "type": "temporal",
+              "title": "Date",
+              "format": "%a, %d %b %Y"
+            },
+            {
+              "field": "Event_Count",
+              "type": "quantitative",
+              "title": "Active events"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "resolve": {
+    "scale": {
+      "color": "shared"
+    }
+  },
+  "config": {
+    "background": "#FFFFFF",
+    "view": {
+      "stroke": null
+    },
+    "facet": {
+      "spacing": 24
+    },
+    "axis": {
+      "grid": false
+    },
+    "legend": {
+      "padding": 8
+    }
+  }
+}

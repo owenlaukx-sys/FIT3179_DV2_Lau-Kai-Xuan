@@ -9,12 +9,14 @@ My FIT3179 (Data Visualisation) Project / Data Visualisation 2 GitHub Repository
 FIT3179_DV2_Lau-Kai-Xuan
 ├── /data
 ├── /js
+    ├── /maps
 ├── index.html
 ├── styles.css
 ```
 
 /data - Contains all CSV files as the primary data folder of the project \
-/js - Contains all webpage Vega-lite chart components and a TopoJSON scalar map data of Australia called `australia_map.json`
+/js - Contains all webpage Vega-lite chart components and maps, with `Australian_Cultural_Events_List_2026.csv` being the main original dataset \
+/maps - A folder within /js that contains all the maps used in the visualisation
 
 ## Data Description
 Our main data source is stored in the `Australian_Cultural_Events_List_2026.csv` which will only cover certain events from year 2026, since there's no single unified dataset found that is small-scaled enough to be usable for the purposes of this assignment. The dataset CSV has 15 columns that record the Event Name, Start Date, End Date, Event City, State, Venue, Description, Event Category, Starting Month, Duration and the corresponding location related latitudes and longitudes for the city and 'exact' venue (some events found don't have a single venue, but are spread out around a city). The sources for all of these events are also provided in a dedicated column within the dataset. 

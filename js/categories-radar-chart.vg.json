@@ -5,7 +5,7 @@
   "height": 500,
   "padding": 0, 
   "autosize": {
-    "type": "pad",
+    "type": "fit-y",
     "contains": "padding",
     "resize": true
   },

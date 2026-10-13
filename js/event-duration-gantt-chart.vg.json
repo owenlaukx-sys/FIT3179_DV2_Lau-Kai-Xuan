@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Top 6 Longest-Running Cultural Events",
+    "subtitle": "Australian events commencing in 2026 · Full event duration shown"
+  },
+  "width": 650,
+  "height": {"step": 42},
+  "data": {
+    "url": "data/Australian_Cultural_Events_List_2026.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Start_Date": "date",
+        "End_Date": "date",
+        "Duration_Days": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "year(datum.Start_Date) === 2026 && isValid(datum.End_Date) && isValid(datum.Duration_Days)"
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "Duration_Rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "Duration_Days",
+          "order": "descending"
+        },
+        {
+          "field": "Event_Name",
+          "order": "ascending"
+        }
+      ]
+    },
+    {
+      "filter": "datum.Duration_Rank <= 6"
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "cornerRadius": 4,
+    "height": 22,
+    "tooltip": true
+  },
+  "encoding": {
+    "y": {
+      "field": "Event_Name",
+      "type": "nominal",
+      "sort": {
+        "field": "Duration_Days",
+        "order": "descending"
+      },
+      "axis": {
+        "title": null,
+        "labelLimit": 220,
+        "labelFontSize": 11,
+        "ticks": false,
+        "domain": false
+      }
+    },
+    "x": {
+      "field": "Start_Date",
+      "type": "temporal",
+      "axis": {
+        "title": "Event Period (2026 ~ 2027)",
+        "format": "%b %Y",
+        "labelAngle": -35,
+        "labelOverlap": false,
+        "tickCount": {
+          "interval": "month",
+          "step": 1
+        },
+        "grid": true,
+        "gridOpacity": 0.2
+      },
+      "scale": {
+        "nice": "month"
+      }
+    },
+    "x2": {
+      "field": "End_Date"
+    },
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Arts & Culture",
+          "Music",
+          "Sports",
+          "Indigenous",
+          "Food & Lifestyle",
+          "Film & Literature",
+          "Multicultural & Community"
+        ],
+        "range": [
+          "#4E79A7",
+          "#F28E2B",
+          "#E15759",
+          "#59A14F",
+          "#76B7B2",
+          "#B07AA1",
+          "#9C755F"
+        ]
+      },
+      "legend": {
+        "title": "Event Category",
+        "orient": "right",
+        "columns": 1,
+        "labelLimit": 180
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Event_Name",
+        "type": "nominal",
+        "title": "Event"
+      },
+      {
+        "field": "Start_Date",
+        "type": "temporal",
+        "title": "Start Date",
+        "format": "%d %b %Y"
+      },
+      {
+        "field": "End_Date",
+        "type": "temporal",
+        "title": "End Date",
+        "format": "%d %b %Y"
+      },
+      {
+        "field": "Duration_Days",
+        "type": "quantitative",
+        "title": "Duration",
+        "format": "d",
+        "formatType": "number"
+      },
+      {
+        "field": "City",
+        "type": "nominal",
+        "title": "City"
+      },
+      {
+        "field": "State",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "Category",
+        "type": "nominal",
+        "title": "Category"
+      }
+    ]
+  },
+  
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFont": "Arial",
+      "titleFont": "Arial",
+      "titleFontSize": 12,
+      "labelColor": "#444444",
+      "titleColor": "#333333"
+    },
+    "title": {
+      "font": "Arial",
+      "fontSize": 20,
+      "subtitleFontSize": 12,
+      "anchor": "start",
+      "color": "#222222"
+    }
+  }
+}

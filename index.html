@@ -24,6 +24,10 @@
 
         <main>
             <h2 class="where-events">Where are Events Held?</h2>
+                <p>
+                    <b>Australia</b>, the <i>Land Down Under</i> is a melting pot of the southeast. A country of 27 ~ 28 million people from all walks of life, 
+                    creating a vibrant cultural and artistic landscape. 
+                </p>
             <div>
                 <div id="location-citymap"></div>
                 <div id="city-bar"></div>
@@ -97,6 +101,7 @@
             <div id="category-radar"></div>
 
             <!------------- Script Section: What Events are Held? ------------->
+
             <script type="text/javascript">
                 var spec_donut = "js/categories-donut.vg.json"; 
                 
@@ -105,9 +110,9 @@
             </script>
 
             <script type="text/javascript">
-                var spec_donut = "js/categories-stacked-bar.vg.json"; 
+                var spec_stacked = "js/categories-stacked-bar.vg.json"; 
                 
-                vegaEmbed('#category-stacked-bar', spec_donut, { "actions": false }).then(function(result){
+                vegaEmbed('#category-stacked-bar', spec_stacked, { "actions": false }).then(function(result){
                 }).catch(console.error); 
             </script>
 
@@ -120,10 +125,28 @@
 
             <h2>When are Events Held?</h2>
 
-
+            <div id="calendar-heatmap"></div>
+            <div id="event-duration-chart"></div>
 
             <!------------- Script Section: When are Events Held? ------------->
+
+            <script type="text/javascript">
+                var spec_cal = "js/calendar-heatmap-events.vg.json"; 
+
+                vegaEmbed('#calendar-heatmap', spec_cal, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
+
+            <script type="text/javascript">
+                var spec_gantt = "js/event-duration-gantt-chart.vg.json"; 
+
+                vegaEmbed('#event-duration-chart', spec_gantt, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
         </main>
         
+        <div class="main-footer">
+
+        </div>
     </body>
 </html>
