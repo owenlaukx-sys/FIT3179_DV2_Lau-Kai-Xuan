@@ -4,7 +4,7 @@
     "text": "Top 6 Longest-Running Cultural Events",
     "subtitle": "Australian events commencing in 2026 · Full event duration shown"
   },
-  "width": 650,
+  "width": 1000,
   "height": {"step": 42},
   "data": {
     "url": "data/Australian_Cultural_Events_List_2026.csv",
@@ -92,22 +92,22 @@
       "type": "nominal",
       "scale": {
         "domain": [
-          "Arts & Culture",
-          "Music",
-          "Sports",
-          "Indigenous",
-          "Food & Lifestyle",
-          "Film & Literature",
-          "Multicultural & Community"
+            "Arts & Culture",
+            "Music",
+            "Sports",
+            "Indigenous",
+            "Food & Drink",
+            "Film & Literature",
+            "Multicultural & Community"
         ],
         "range": [
-          "#4E79A7",
-          "#F28E2B",
-          "#E15759",
-          "#59A14F",
-          "#76B7B2",
-          "#B07AA1",
-          "#9C755F"
+            "#0072B2",
+            "#E69F00",
+            "#009E73",
+            "#CC79A7",
+            "#D55E00",
+            "#56B4E9",
+            "#F0E442"
         ]
       },
       "legend": {

@@ -42,7 +42,7 @@
                 "size": {
                     "field": "Event_Count", 
                     "type": "quantitative", 
-                    "scale": {"range": [25, 1000]}, 
+                    "scale": {"range": [25, 1000], "zero": false}, 
                     "legend": {"title": "Number of Events"}
                 }, 
 

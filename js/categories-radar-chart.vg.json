@@ -161,9 +161,9 @@
         "Indigenous"
       ],
       "range": [
-        "#4C78A8",
-        "#F58518",
-        "#54A24B"
+        "#0072B2",
+        "#009E73",
+        "#CC79A7"
       ]
     }
   ],
@@ -368,7 +368,7 @@
           "x": {"signal": "legendX"},
           "y": {"signal": "legendY"},
           "size": {"value": 110},
-          "fill": {"value": "#4C78A8"}
+          "fill": {"value": "#0072B2"}
         },
         "update": {
           "opacity": {"signal": "showArts ? 1 : 0.25"}
@@ -416,7 +416,7 @@
           "x": {"signal": "legendX"},
           "y": {"signal": "legendY + 30"},
           "size": {"value": 110},
-          "fill": {"value": "#F58518"}
+          "fill": {"value": "#009E73"}
         },
         "update": {
           "opacity": {"signal": "showSports ? 1 : 0.25"}
@@ -464,7 +464,7 @@
           "x": {"signal": "legendX"},
           "y": {"signal": "legendY + 60"},
           "size": {"value": 110},
-          "fill": {"value": "#54A24B"}
+          "fill": {"value": "#CC79A7"}
         },
         "update": {
           "opacity": {"signal": "showIndigenous ? 1 : 0.25"}

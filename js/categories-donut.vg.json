@@ -48,6 +48,26 @@
         "color": {
             "field": "Category",
             "type": "nominal",
+            "scale": {
+                "domain": [
+                    "Arts & Culture",
+                    "Music",
+                    "Sports",
+                    "Indigenous",
+                    "Food & Drink",
+                    "Film & Literature",
+                    "Multicultural & Community"
+                ],
+                "range": [
+                    "#0072B2",
+                    "#E69F00",
+                    "#009E73",
+                    "#CC79A7",
+                    "#D55E00",
+                    "#56B4E9",
+                    "#F0E442"
+                ]
+            },
             "legend": {"title": "Event Category"}
         },
 

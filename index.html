@@ -104,7 +104,8 @@
 
             <script type="text/javascript">
                 var spec_donut = "js/categories-donut.vg.json"; 
-                
+
+                // The colour scheme for each category uses the Okabe-Ito palette
                 vegaEmbed('#category-donut', spec_donut, { "actions": false }).then(function(result){
                 }).catch(console.error); 
             </script>
@@ -146,7 +147,17 @@
         </main>
         
         <div class="main-footer">
-
+            <span style="font-size: 10pt; margin-bottom: 10px;">
+            <i>Events data has been extracted or scraped from the Internet with assistance from AI platforms like ChatGPT and 
+            Google Gemini search, all links and information are verified manually with the links included in the dataset.</i>
+            </span>
+            <br>
+            
+            GitHub: 
+            <a href="https://github.com/owenlaukx-sys/FIT3179_DV2_Lau-Kai-Xuan" 
+            style="color: white;" target="_blank">
+                Here
+            </a>
         </div>
     </body>
 </html>
