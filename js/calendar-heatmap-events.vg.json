@@ -1,12 +1,11 @@
-
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": {
-    "text": "Monthly Calendar Heatmap of Event Density - 2026",
+    "text": "Monthly Calendar Heatmap of Event Density — 2026",
     "subtitle": "Daily count of cultural events active across Australia",
     "anchor": "start",
-    "fontSize": 18,
-    "subtitleFontSize": 12,
+    "fontSize": 24,
+    "subtitleFontSize": 18,
     "offset": 14
   },
   "data": {
@@ -48,7 +47,7 @@
       "labelOrient": "top"
     }
   },
-  "columns": 3,
+  "columns": 4,
   "spec": {
     "width": {
       "step": 25
@@ -66,15 +65,6 @@
         },
         "encoding": {
           "x": {
-            "field": "Week_Of_Month",
-            "type": "ordinal",
-            "sort": [0, 1, 2, 3, 4, 5],
-            "axis": null,
-            "scale": {
-              "domain": [0, 1, 2, 3, 4, 5]
-            }
-          },
-          "y": {
             "field": "Weekday_Label",
             "type": "ordinal",
             "sort": [
@@ -88,10 +78,32 @@
             ],
             "axis": {
               "title": null,
+              "orient": "top",
               "labelFontSize": 9,
+              "labelAngle": 0,
               "labelPadding": 4,
               "ticks": false,
               "domain": false
+            },
+            "scale": {
+              "domain": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat",
+                "Sun"
+              ]
+            }
+          },
+          "y": {
+            "field": "Week_Of_Month",
+            "type": "ordinal",
+            "sort": [0, 1, 2, 3, 4, 5],
+            "axis": null,
+            "scale": {
+              "domain": [0, 1, 2, 3, 4, 5]
             }
           },
           "color": {
@@ -140,20 +152,10 @@
         "mark": {
           "type": "text",
           "fontSize": 10,
-          "fontWeight": "normal",
           "baseline": "middle"
         },
         "encoding": {
           "x": {
-            "field": "Week_Of_Month",
-            "type": "ordinal",
-            "sort": [0, 1, 2, 3, 4, 5],
-            "axis": null,
-            "scale": {
-              "domain": [0, 1, 2, 3, 4, 5]
-            }
-          },
-          "y": {
             "field": "Weekday_Label",
             "type": "ordinal",
             "sort": [
@@ -165,7 +167,27 @@
               "Sat",
               "Sun"
             ],
-            "axis": null
+            "axis": null,
+            "scale": {
+              "domain": [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat",
+                "Sun"
+              ]
+            }
+          },
+          "y": {
+            "field": "Week_Of_Month",
+            "type": "ordinal",
+            "sort": [0, 1, 2, 3, 4, 5],
+            "axis": null,
+            "scale": {
+              "domain": [0, 1, 2, 3, 4, 5]
+            }
           },
           "text": {
             "field": "Day",
@@ -178,20 +200,7 @@
               "value": "#FFFFFF"
             },
             "value": "#1F2937"
-          },
-          "tooltip": [
-            {
-              "field": "Date",
-              "type": "temporal",
-              "title": "Date",
-              "format": "%a, %d %b %Y"
-            },
-            {
-              "field": "Event_Count",
-              "type": "quantitative",
-              "title": "Active events"
-            }
-          ]
+          }
         }
       }
     ]
@@ -207,7 +216,7 @@
       "stroke": null
     },
     "facet": {
-      "spacing": 24
+      "spacing": 18
     },
     "axis": {
       "grid": false

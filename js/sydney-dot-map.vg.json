@@ -7,16 +7,32 @@
   "projection": "mercator", 
   "layer": [
     {
+      "description": "Background", 
+        "data": {
+            "values": [{}]
+        }, 
+        "mark": {
+            "type": "image",
+            "url": "images/Sydney-map.png",
+            "align": "left",
+            "baseline": "top",
+            "x": 0,
+            "y": 0,
+            "width": 400,
+            "height": 300
+        }
+    }, 
+    {
       "data": {
         "url": "js/maps/Sydney_Downtown_Map.json",
         "format": {
           "type": "topojson",
-          "feature": "ne_10m_admin_0_countries"
+          "feature": "ne_10m_admin_1_states_provinces"
         }
       },
       "mark": {
         "type": "geoshape",
-        "fill": "white", 
+        "fill": null, 
         "stroke": "black"
       }
     },
@@ -58,7 +74,7 @@
       "mark": {
         "type": "circle",
         "size": 100,
-        "opacity": 0.7, 
+        "opacity": 0.5, 
         "stroke": "black"
       },
 

@@ -27,7 +27,7 @@
             "url": "js/maps/Adelaide_Downtown_Map.json",
             "format": {
             "type": "topojson",
-            "feature": "ne_10m_admin_0_countries"
+            "feature": "ne_10m_admin_1_states_provinces"
             }
         },
         "mark": {
@@ -74,7 +74,7 @@
         "mark": {
             "type": "circle",
             "size": 100,
-            "opacity": 0.7, 
+            "opacity": 0.5, 
             "stroke": "black"
         },
 

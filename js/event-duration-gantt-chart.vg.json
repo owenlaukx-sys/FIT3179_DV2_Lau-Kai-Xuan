@@ -2,9 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": {
     "text": "Top 6 Longest-Running Cultural Events",
-    "subtitle": "Australian events commencing in 2026 · Full event duration shown"
+    "subtitle": "Australian events commencing in 2026 — Full event duration shown",
+    "fontSize": 24, 
+    "subtitleFontSize": 18,
+    "offset": 14
   },
-  "width": 1000,
+  "width": 800,
   "height": {"step": 42},
   "data": {
     "url": "data/Australian_Cultural_Events_List_2026.csv",

@@ -1,8 +1,20 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v6.json", 
-    "width": 400, 
-    "height": 300, 
-    "title": "Categories of Cultural Events Held in Australia 2026",
+    "width": 550, 
+    "height": 450, 
+    "autosize": {
+        "type": "fit-y",
+        "contains": "padding",
+        "resize": true
+    },
+    "title": {
+        "text": "Categories of Cultural Events in Australia 2026",
+        "subtitle": "Major Categories for Australian Events",
+        "anchor": "start",
+        "fontSize": 24,
+        "subtitleFontSize": 18,
+        "offset": 14
+    },
     "data": {
         "url": "data/Australian_Cultural_Events_List_2026.csv"
     }, 

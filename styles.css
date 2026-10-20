@@ -6,7 +6,9 @@ body {
 main {
     padding-left: 50px;
     padding-right: 50px;
+    padding-top: 25px;
     padding-bottom: 25px;
+    text-align: justify;
 }
 
 .main-title, .main-footer {
@@ -24,13 +26,15 @@ h1 {
     font-size: 60px;
     margin-top: 0px;
     margin-bottom: 0px;
+    text-transform: uppercase;
 }
 
 h2 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 45px;
+    font-size: 48px;
     font-weight: bolder;
     margin-bottom: 15px; 
+    text-transform: uppercase;
 }
 
 .where-events {
@@ -39,14 +43,200 @@ h2 {
 
 h3 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 30px;
+    font-size: 38px;
     margin-bottom: 15px; 
 }
 
+h4 {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+    font-weight: normal;
+    margin: auto; 
+    margin-bottom: 15px;
+}
+
+/* ------------------------- TEXT SECTIONS ------------------------- */
+/* Default p element */
 p {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 15px; 
+    font-size: 18px; 
     margin-top: auto;
-    margin-bottom: 25px;
-    text-align: justify;
+    margin-bottom: auto;
+}
+
+/* Introduction: two divs arranged side-by-side */
+.introduction, 
+.description {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 50px;
+}
+
+/* Each inner div occupies half the available width */
+.intro-1,
+.intro-data, 
+.description-box-1, 
+.description-box-2 {
+    flex: 1;
+    min-width: 0;
+    padding: 25px;
+    box-sizing: border-box;
+    border: 2px solid lightgray;
+    border-radius: 15px;
+}
+
+/* Keep the introduction paragraphs neatly aligned */
+.introduction p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.category-desc-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
+
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.cat-desc-1, 
+.cat-desc-2, 
+.cat-desc-3 {
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 25px;
+    box-sizing: border-box;
+
+    border: 2px solid lightgray;
+    border-radius: 15px;
+}
+
+/* ------------------------- CHART SECTIONS ------------------------- */
+/* The main div encompassing each chart */
+.city-map-section, 
+.states-map-section, 
+.category-charts-section1,
+.category-charts-section2, 
+.calendar-section, 
+.gantt-chart-section {
+    border: 5px solid lightgray;
+    border-radius: 30px;
+    padding: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----- Downtown Map Layout ----- */
+/* Exception is downtown-map-section has no border */
+.downtown-map-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Individual city map containers */
+.adelaide-section,
+.melbourne-section,
+.sydney-section {
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 15px;
+    box-sizing: border-box;
+
+    border: 5px solid lightgray;
+    border-radius: 15px;
+}
+
+/* Centre each embedded map within its container */
+#adelaide,
+#melbourne,
+#sydney {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+/* Centre the Vega embed wrapper */
+.adelaide-section .vega-embed,
+.melbourne-section .vega-embed,
+.sydney-section .vega-embed {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+/* Prevent the rendered chart from exceeding its container */
+.adelaide-section svg,
+.melbourne-section svg,
+.sydney-section svg,
+.adelaide-section canvas,
+.melbourne-section canvas,
+.sydney-section canvas {
+    max-width: 100%;
+}
+
+/* The following makes the section more  */
+@media (max-width: 900px) {
+    .downtown-map-section {
+        flex-wrap: wrap;
+    }
+
+    .adelaide-section,
+    .melbourne-section,
+    .sydney-section {
+        flex: 1 1 45%;
+    }
+}
+
+@media (max-width: 600px) {
+    .adelaide-section,
+    .melbourne-section,
+    .sydney-section {
+        flex: 1 1 100%;
+    }
+}
+
+
+/* ----- Specific Display Methods ----- */
+.city-map-section {
+    display: grid;
+}
+
+.states-map-section, 
+.category-charts-section1 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.category-charts-section2, 
+.calendar-section, 
+.gantt-chart-section {
+    display: flex;
 }

@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v6.json", 
-    "width": 600, 
-    "height": 500, 
+    "width": 800, 
+    "height": 650, 
     "projection": {"type": "mercator"},
     "layer": [
         {
@@ -14,7 +14,10 @@
 
         {
             "data": {
-                "url": "data/Australian_Cultural_Events_List_2026.csv"
+                "url": "data/Australian_Cultural_Events_List_2026.csv", 
+                "format": {
+                    "type": "csv"
+                }
             }, 
 
             "transform": [
@@ -42,7 +45,7 @@
                 "size": {
                     "field": "Event_Count", 
                     "type": "quantitative", 
-                    "scale": {"range": [25, 1000], "zero": false}, 
+                    "scale": {"range": [50, 1000], "zero": false}, 
                     "legend": {"title": "Number of Events"}
                 }, 
 

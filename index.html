@@ -23,25 +23,97 @@
         </div>
 
         <main>
-            <h2 class="where-events">Where are Events Held?</h2>
-                <p>
-                    <b>Australia</b>, the <i>Land Down Under</i> is a melting pot of the southeast. A country of 27 ~ 28 million people from all walks of life, 
-                    creating a vibrant cultural and artistic landscape. 
-                </p>
-            <div>
+            <div class="introduction">
+                <div class="intro-1">
+                    <p>
+                        <b>Australia</b>, the <i>Land Down Under</i> is a melting pot of the southeast, a country of 27 ~ 28 million people from all walks of life. 
+                        A mix of local cultures and an international presence created a vibrant cultural and artistic landscape. 
+                    </p>
+                </div>
+                <div class="intro-data">
+                    <p>
+                        A total of <b>78</b> different cultural events commenced in year 2026 held throughout Australia are recorded for this 
+                        visual graphic. They include international sporting events, art exhibitions, music festivals and local community events. 
+                    </p>
+                </div>
+            </div>
+
+            <div class="where-events">
+                <h2>Where are Events Held?</h2>
+            </div>
+            
+            <div class="city-map-section">
                 <div id="location-citymap"></div>
                 <div id="city-bar"></div>
             </div>
             
-            <div>
-                <div id="adelaide"></div>
-                <div id="melbourne"></div>
-                <div id="sydney"></div>
+            <h3>Major Cities - Events and Venues</h3>
+            <div class="downtown-map-section">
+
+                <div class="adelaide-section">
+                    <div id="adelaide"></div>
+                </div>
+                
+                <div class="melbourne-section">
+                    <div id="melbourne"></div>
+                </div>
+
+                <div class="sydney-section">
+                    <div id="sydney"></div>
+                </div>
+
+            </div>
+
+            
+            <div class="category-desc-section">
+                <div class="cat-desc-1">
+                    <h4>Adelaide</h4>
+                    <p>
+                        Also known as <i>Australia's Festival Capital</i>. Adelaide hosts the Adelaide Festival, Adelaide Fringe, the Adelaide Cabaret Festival and the Adelaide 
+                        Film Festival, celebrating the arts, dance, music, history and community cultures all year round. Iconic festival grounds include Adelaide Festival, 
+                        Center, Picadilly Circus and Adelaide Town Hall, a venue for Adelaide Fashion Week 2026. 
+                    </p>
+                </div>
+
+                <div class="cat-desc-2">
+                    <h4>Melbourne</h4>
+                    <p>
+                        The <i>Sports Capital of Australia</i>, anchored by the <b>Melbourne Sports and Entertainment Precinct</b>, which hosted the 1956 Summer Olympics. 
+                        Besides that, the city annually hosts the Formula 1 Australian Grand Prix at Albert Park Circuit, the Australian Open at Melbourne Park (including Rod 
+                        Laver Arena), international test cricket and the AFL Grand Final at Melbourne Cricket Ground in Yarra Park. 
+                    </p>
+                </div>
+
+                <div class="cat-desc-3">
+                    <h4>Sydney</h4>
+                    <p>
+                        Home to iconic venues such as the <b>Sydney Opera House</b> and the <b>Sydney Olympic Park</b> that hosted the 2000 Summer Olympics. 
+                        Bondi Beach and Sydney Harbour play host to Australian beachside and water sports. Notable annual events include Vivid Sydney, the Sydney
+                        Film Festival, the Sydney Festival and the Sydney Gay and Lesbian Mardi Gras pride parade. 
+                    </p>
+                </div>
             </div>
             
             <h3>States and Territories</h3>
-            <div id="choropleth-map"></div>
-            <div id="state-lollipop-chart"></div>
+            <div class="states-map-section">
+                <div id="choropleth-map"></div>
+                <div id="state-lollipop-chart"></div>
+            </div>
+
+            <div class="description">
+                <div class="description-box-1">
+                    <p>
+                        <b>Sydney</b>, <b>Melbourne</b> and <b>Brisbane</b> are the 3 largest cities in Australia by population. The capitals of New South Wales, Victoria and 
+                        Queensland respectively; the top 3 in event numbers. 
+                    </p>
+                </div>
+                <div class="description-box-2">
+                    <p>
+                        Venue infrastructure and an already established multicultural and global urban community allow the major cities like Sydney to be central cores of 
+                        Australia's cultural events. 
+                    </p>
+                </div>
+            </div>
 
             <!------------- Script Section: Where are Events Held? ------------->
 
@@ -96,9 +168,44 @@
 
             <h2>What Events are Held?</h2>
 
-            <div id="category-donut"></div>
-            <div id="category-stacked-bar"></div>
-            <div id="category-radar"></div>
+            <div class="category-charts-section1">
+                <div id="category-donut"></div>
+                <div id="category-radar"></div>
+            </div>
+
+            <!-- Description of the different types of cultural events held or celebrated in Australia -->
+            <div class="category-desc-section">
+                <div class="cat-desc-1">
+                    <h4>Art and Multicultural</h4>
+                    <p>
+                        Creative arts, film and music are widely celebrated in Australia, with a strong entertainment industry. 
+                        Artists all over are celebrated in events like the Sydney Film Festival. Australian folk music is a distinct local genre. 
+                        Communities are built by immigration from around the world. 
+                    </p>
+                </div>
+
+                <div class="cat-desc-2">
+                    <h4>International Sports</h4>
+                    <p>
+                        Australia hosts many sporting events, mainly in or around Melbourne, Victoria. Popular sports among the population 
+                        include cricket, surfing and Aussie football. Grand international events include the Australian Open, Australian Grand 
+                        Prix and Australian Motorcycle Grand Prix. 
+                    </p>
+                </div>
+
+                <div class="cat-desc-3">
+                    <h4>Aboriginal Culture</h4>
+                    <p>
+                        Unique to Australia, are the indigenous <b>Aboriginal</b> and <b>Torres Strait Islander</b> people, promoting their 
+                        cultural arts, musics, sport and traditions. Most events are take place in the Northern Territories, the 
+                        place with the largest proportion of indigenous peoples in the nation. 
+                    </p>
+                </div>
+            </div>
+
+            <div class="category-charts-section2">
+                <div id="category-stacked-bar"></div>
+            </div>
 
             <!------------- Script Section: What Events are Held? ------------->
 
@@ -111,23 +218,41 @@
             </script>
 
             <script type="text/javascript">
-                var spec_stacked = "js/categories-stacked-bar.vg.json"; 
-                
-                vegaEmbed('#category-stacked-bar', spec_stacked, { "actions": false }).then(function(result){
-                }).catch(console.error); 
-            </script>
-
-            <script type="text/javascript">
                 var spec_radar = "js/categories-radar-chart.vg.json"; 
                 // Unlike the rest, this chart use Vega instead of Vega-lite as the rendering format
                 vegaEmbed('#category-radar', spec_radar, { "actions": false }).then(function(result){
                 }).catch(console.error); 
             </script>
 
+            <script type="text/javascript">
+                var spec_stacked = "js/categories-stacked-bar.vg.json"; 
+                
+                vegaEmbed('#category-stacked-bar', spec_stacked, { "actions": false }).then(function(result){
+                }).catch(console.error); 
+            </script>
+
             <h2>When are Events Held?</h2>
 
-            <div id="calendar-heatmap"></div>
-            <div id="event-duration-chart"></div>
+            <div class="calendar-section">
+                <div id="calendar-heatmap"></div>
+            </div>
+
+            <div class="gantt-chart-section">
+                <div id="event-duration-chart"></div>
+            </div>
+
+            <div class="description">
+                <div class="description-box-1">
+                    <p>
+                        Hello
+                    </p>
+                </div>
+                <div class="description-box-2">
+                    <p>
+                        Hello
+                    </p>
+                </div>
+            </div>
 
             <!------------- Script Section: When are Events Held? ------------->
 
@@ -149,7 +274,7 @@
         <div class="main-footer">
             <span style="font-size: 10pt; margin-bottom: 10px;">
             <i>Events data has been extracted or scraped from the Internet with assistance from AI platforms like ChatGPT and 
-            Google Gemini search, all links and information are verified manually with the links included in the dataset.</i>
+            Google Gemini search, all links and information are verified with the links included in the dataset.</i>
             </span>
             <br>
             

@@ -1,9 +1,14 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
 
-    "width": 600,
-    "height": 300,
-    "title": "Top 6 Cities with Largest Number of Major Cultural Events in Australia 2026", 
+    "width": 800,
+    "height": 500,
+    "title": {
+        "text": "Top 6 Cities with Largest Number of Major Cultural Events in Australia 2026", 
+        "anchor": "middle", 
+        "fontSize": 24,
+        "offset": 14
+    },
     "data": {
         "url": "data/Australian_Cultural_Events_List_2026.csv"
     },
@@ -39,7 +44,7 @@
         {"filter": "datum.Rank <= 6"}
     ],
 
-    "mark": {"type": "bar", "size": 35},
+    "mark": {"type": "bar", "size": 50},
 
     "encoding": {
         "y": {
@@ -54,7 +59,10 @@
         "x": {
             "field": "Event_Count",
             "type": "quantitative",
-            "title": "Number of Events"
+            "title": "Number of Events", 
+            "axis": {
+                "tickMinStep": 1
+            }
         },
         "tooltip": [
             {
