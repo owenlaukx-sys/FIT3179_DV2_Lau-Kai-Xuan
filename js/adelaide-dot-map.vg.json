@@ -3,7 +3,12 @@
 
   "width": 400,
   "height": 300,
-  "title": "Adelaide City 2026 Major Events",
+  "title": {
+    "text": "Major Events in Adelaide", 
+    "anchor": "middle", 
+    "fontSize": 20,
+    "offset": 14
+  },
   "projection": "mercator", 
   "layer": [
     {

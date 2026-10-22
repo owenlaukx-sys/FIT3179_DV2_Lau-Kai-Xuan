@@ -3,7 +3,12 @@
 
   "width": 400,
   "height": 300,
-  "title": "Sydney City 2026 Major Events",
+  "title": {
+    "text": "Major Events in Sydney", 
+    "anchor": "middle", 
+    "fontSize": 20,
+    "offset": 14
+  },
   "projection": "mercator", 
   "layer": [
     {

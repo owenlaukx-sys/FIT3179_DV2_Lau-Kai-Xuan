@@ -27,9 +27,9 @@ The visualisation will explore the where, what and when about Australian cultura
 ### 5 Map charts 
 1. Host Cities or Localities Map of Where Events are Held (*Proportional Symbol Map*)
 2. State Map for Proportion of the Total Events Recorded (*Choropleth Map*)
-3. Map of Sydney Area Venue Location (*Dot Map*)
-4. Map of Adelaide Area Venue Location (*Dot Map*)
-5. Map of Melbourne Area Venue Location (*Dot Map*)
+3. Map of Sydney Area Events Location (*Dot Map*)
+4. Map of Adelaide Area Events Location (*Dot Map*)
+5. Map of Melbourne Area Events Location (*Dot Map*)
 
 ### Other Charts
 1. Top 6 Cities with the Largest Cultural Event Numbers in Australia 2026 (*Bar Chart*)

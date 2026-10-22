@@ -1,8 +1,13 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
     "width": 500,
-    "height": 500,
-    "title": "Number of Major Cultural Events by State in Australia 2026", 
+    "height": 400,
+    "title": {
+        "text": "Major Cultural Events by State", 
+        "anchor": "middle", 
+        "fontSize": 24,
+        "offset": 14
+    }, 
     "data": {
         "url": "data/state_event_proportions.csv"
     }, 

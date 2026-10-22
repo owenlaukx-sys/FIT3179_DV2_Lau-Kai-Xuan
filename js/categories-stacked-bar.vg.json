@@ -29,10 +29,7 @@
         }
     ],
 
-    "mark": {
-        "type": "bar"
-    },
-
+    "mark": {"type": "bar", "size": 45},
     "encoding": {
         "x": {
             "field": "Event_Count",

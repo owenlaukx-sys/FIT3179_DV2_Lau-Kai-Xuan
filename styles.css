@@ -11,16 +11,85 @@ main {
     text-align: justify;
 }
 
+/* ------------------------- TITLE AND FOOTER -------------------------  */
 .main-title, .main-footer {
     background-color: #012169;
     color: white;
     padding: 20px;
 }
 
-span {
-    display: inline-block;
+.main-footer {
+    line-height: 1.6;
 }
 
+/* Data collection note */
+.footer-note {
+    font-size: 10pt;
+    margin-bottom: 20px;
+}
+
+/* Sources section */
+.footer-sources h5 {
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    font-size: 20px;
+    margin: 0 0 10px;
+    color: white;
+}
+
+.footer-sources ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 35px;
+    padding-left: 20px;
+    margin: 0 0 25px;
+}
+
+.footer-sources li {
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.footer-github {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: white;
+}
+
+.footer-sources a,
+.footer-github a {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: normal;
+    color: white;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.footer-sources a:hover,
+.footer-github a:hover {
+    color: #d6e5ff;
+}
+
+/* GitHub repository */
+.footer-github {
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    .main-footer {
+        padding: 25px;
+    }
+
+    .footer-sources ul {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+
+/* ------------------------- HEADINGS ------------------------- */
 h1 {
     font-family: Garamond, 'Times New Roman', Times, serif;
     font-size: 60px;
@@ -246,4 +315,59 @@ p {
 .calendar-section, 
 .gantt-chart-section {
     display: flex;
+}
+
+/* ----- Duration Section Styling ----- */
+.duration-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.duration-stat {
+    padding: 15px 15px;
+    border-radius: 15px;
+    background-color: #f3f5f8;
+    text-align: center;
+    border-top: 5px solid #3973AC;
+}
+
+.duration-stat.average {
+    border-top-color: #D17A22;
+}
+
+.duration-stat h5 {
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    font-size: 17px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.duration-value {
+    font-family: Garamond, 'Times New Roman', serif;
+    font-size: 38px;
+    font-weight: bold;
+    color: #3973AC;
+}
+
+.duration-stat.average .duration-value {
+    color: #D17A22;
+}
+
+.duration-value span {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+/* Stack the statistics on smaller screens */
+@media (max-width: 600px) {
+    .duration-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .duration-value {
+        font-size: 32px;
+    }
 }

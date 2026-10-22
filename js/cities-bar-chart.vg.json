@@ -2,9 +2,9 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
 
     "width": 800,
-    "height": 500,
+    "height": 400,
     "title": {
-        "text": "Top 6 Cities with Largest Number of Major Cultural Events in Australia 2026", 
+        "text": "Top 6 Cities with Largest Number of Major Cultural Events", 
         "anchor": "middle", 
         "fontSize": 24,
         "offset": 14
@@ -44,7 +44,7 @@
         {"filter": "datum.Rank <= 6"}
     ],
 
-    "mark": {"type": "bar", "size": 50},
+    "mark": {"type": "bar", "size": 45},
 
     "encoding": {
         "y": {
