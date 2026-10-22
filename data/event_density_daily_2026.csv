@@ -279,7 +279,7 @@ Date,Event_Count,Month,Month_Number,Day,Weekday,Weekday_Label,Week_Of_Month
 2026-10-05,5,October,10,5,0,Mon,1
 2026-10-06,4,October,10,6,1,Tue,1
 2026-10-07,4,October,10,7,2,Wed,1
-2026-10-08,5,October,10,8,3,Thu,1
+2026-10-08,6,October,10,8,3,Thu,1
 2026-10-09,5,October,10,9,4,Fri,1
 2026-10-10,5,October,10,10,5,Sat,1
 2026-10-11,5,October,10,11,6,Sun,1
@@ -358,9 +358,9 @@ Date,Event_Count,Month,Month_Number,Day,Weekday,Weekday_Label,Week_Of_Month
 2026-12-23,1,December,12,23,2,Wed,3
 2026-12-24,1,December,12,24,3,Thu,3
 2026-12-25,1,December,12,25,4,Fri,3
-2026-12-26,2,December,12,26,5,Sat,3
-2026-12-27,3,December,12,27,6,Sun,3
-2026-12-28,3,December,12,28,0,Mon,4
-2026-12-29,3,December,12,29,1,Tue,4
-2026-12-30,3,December,12,30,2,Wed,4
+2026-12-26,3,December,12,26,5,Sat,3
+2026-12-27,4,December,12,27,6,Sun,3
+2026-12-28,4,December,12,28,0,Mon,4
+2026-12-29,4,December,12,29,1,Tue,4
+2026-12-30,4,December,12,30,2,Wed,4
 2026-12-31,3,December,12,31,3,Thu,4

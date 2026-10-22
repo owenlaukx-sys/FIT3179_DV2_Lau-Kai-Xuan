@@ -35,6 +35,7 @@ h2 {
     font-weight: bolder;
     margin-bottom: 15px; 
     text-transform: uppercase;
+    color: #012169;
 }
 
 .where-events {
@@ -45,14 +46,16 @@ h3 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 38px;
     margin-bottom: 15px; 
+    color: #00843D;
 }
 
 h4 {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 30px;
-    font-weight: normal;
+    font-weight: bold;
     margin: auto; 
     margin-bottom: 15px;
+    color: #00843D;
 }
 
 /* ------------------------- TEXT SECTIONS ------------------------- */
@@ -135,6 +138,10 @@ p {
     margin-bottom: 20px;
     justify-content: center;
     align-items: center;
+}
+
+.city-bar {
+    margin-top: 20px;
 }
 
 /* ----- Downtown Map Layout ----- */

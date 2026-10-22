@@ -145,7 +145,8 @@
         {"value": 2},
         {"value": 4},
         {"value": 6},
-        {"value": 8}
+        {"value": 8}, 
+        {"value": 10}
       ]
     }
   ],
@@ -153,7 +154,7 @@
     {
       "name": "radial",
       "type": "linear",
-      "domain": [0, 8],
+      "domain": [0, 10],
       "range": [0, {"signal": "radius"}],
       "zero": true,
       "nice": false,

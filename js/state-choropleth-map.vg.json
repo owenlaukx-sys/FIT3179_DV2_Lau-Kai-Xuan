@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "width": 550,
   "height": 500,
-  "projection": {"type": "mercator"},
+  "projection": {"type": "equirectangular"},
   "data": {
     "url": "js/maps/australia_map.json",
     "format": {

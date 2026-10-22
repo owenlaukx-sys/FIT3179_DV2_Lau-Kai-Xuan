@@ -74,6 +74,7 @@
       "mark": {
         "type": "circle",
         "size": 100,
+        "color": "yellow", 
         "opacity": 0.5, 
         "stroke": "black"
       },
