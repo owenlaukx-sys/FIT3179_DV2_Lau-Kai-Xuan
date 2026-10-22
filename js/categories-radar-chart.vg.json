@@ -10,7 +10,7 @@
   "title": {
     "text": "Top 3 Most Common Event Categories by State", 
     "subtitle": "Arts & Culture, Sports and Indigenous Events",
-    "anchor": "start",
+    "anchor": "middle",
     "fontSize": 24,
     "subtitleFontSize": 18,
     "offset": 14

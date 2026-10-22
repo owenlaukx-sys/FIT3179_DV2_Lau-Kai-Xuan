@@ -2,6 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "width": 500,
   "height": 400,
+  "title": {
+    "text": "2026 Events in Australia's States and Territories", 
+    "anchor": "middle", 
+    "fontSize": 24,
+    "offset": 14
+  }, 
   "projection": {"type": "equirectangular"},
   "data": {
     "url": "js/maps/australia_map.json",
