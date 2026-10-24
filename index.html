@@ -21,13 +21,20 @@
         <div class="main-title">
             <h1>AUSTRALIAN CULTURAL EVENTS 2026</h1>
         </div>
+        <!-- Table of Contents -->
+        <nav class="content-list">
+            <span class="content-label">Content</span>
+            <a href="#where-events-are">WHERE</a>
+            <a href="#what-events">WHAT</a>
+            <a href="#when-events">WHEN</a>
+        </nav>
 
         <main>
             <div class="introduction">
                 <div class="intro-1">
                     <p>
-                        <b style="color: #012169;">Australia</b>, the <i>Land Down Under</i> is a melting pot of the southeast, a country of 27 ~ 28 million people from all walks of life. 
-                        A mix of local cultures and an international presence created a vibrant cultural and artistic landscape. 
+                        <b style="color: #012169;">Australia</b>, the <i>Land Down Under</i> is a melting pot, a country of 27 ~ 28 million people (<i>from ABS</i>) 
+                        of all walks of life. A mix of local cultures and a notable international presence created a vibrant cultural and artistic landscape. 
                     </p>
                 </div>
                 <div class="intro-data">
@@ -39,7 +46,7 @@
             </div>
 
             <div class="where-events">
-                <h2>Where are Events Held?</h2>
+                <h2 id="where-events-are">Where are Events Held?</h2>
             </div>
             
             <div class="city-map-section">
@@ -103,7 +110,7 @@
             <div class="description">
                 <div class="description-box-1">
                     <p>
-                        <b>Sydney</b>, <b>Melbourne</b> and <b>Brisbane</b> are the 3 largest cities in Australia by population. The capitals of New South Wales, Victoria and 
+                        <b>Sydney</b>, <b>Melbourne</b> and <b>Brisbane</b> are the 3 largest cities in Australia by population (<i>from ABS</i>). The capitals of New South Wales, Victoria and 
                         Queensland respectively; the top 3 in event numbers. 
                     </p>
                 </div>
@@ -166,7 +173,23 @@
                 }).catch(console.error); 
             </script>
 
-            <h2>What Events are Held?</h2>
+            <h2 id="what-events">What Events are Held?</h2>
+            <div class="category-explanation">
+                <h4>Categories</h4>
+
+                <p>
+                    Each event is classified under <b>7</b> general categories: 
+                </p>
+                <ol class="categories-list">
+                    <li><b>Arts & Culture</b> - art exhibitions or creative programs</li>
+                    <li><b>Music</b> - musical theatre, conserts or festivals</li>
+                    <li><b>Sports</b> - sporting events</li>
+                    <li><b>Indigenous</b> - Aboriginal cultural showcases and art</li>
+                    <li><b>Food & Drink</b> - food festivals</li>
+                    <li><b>Film & Literature</b> - film festivals, writing and comedy</li>
+                    <li><b>Multicultural & Community</b> - community or town activities</li>
+                </ol>
+            </div>
 
             <div class="category-charts-section1">
                 <div id="category-donut"></div>
@@ -198,7 +221,7 @@
                     <p>
                         Unique to Australia, are the indigenous <b>Aboriginal</b> and <b>Torres Strait Islander</b> people, promoting their 
                         cultural arts, musics, sport and traditions. Most events are take place in the Northern Territories, the place with the 
-                        largest proportion of indigenous peoples in the nation. 
+                        largest proportion of indigenous peoples in the nation (<i>from ABS</i>). 
                     </p>
                 </div>
             </div>
@@ -231,7 +254,7 @@
                 }).catch(console.error); 
             </script>
 
-            <h2>When are Events Held?</h2>
+            <h2 id="when-events">When are Events Held?</h2>
 
             <div class="calendar-section">
                 <div id="calendar-heatmap"></div>
@@ -331,13 +354,19 @@
                     <li>
                         <a href="https://www.abs.gov.au/statistics/people/population/regional-population/2024-25"
                         target="_blank" rel="noopener noreferrer">
-                            Australian Bureau of Statistics &mdash; Regional Population 2024~25
+                            Australian Bureau of Statistics (ABS) &mdash; Regional Population 2024~25
                         </a>
                     </li>
                     <li>
                         <a href="https://www.abs.gov.au/statistics/people/aboriginal-and-torres-strait-islander-peoples/aboriginal-and-torres-strait-islander-people-census/2021"
                         target="_blank" rel="noopener noreferrer">
-                            Australian Bureau of Statistics &mdash; Aboriginal and Torres Strait Islander Census 2021
+                            Australian Bureau of Statistics (ABS) &mdash; Aboriginal and Torres Strait Islander Census 2021
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/mar-2026"
+                        target="_blank" rel="noopener noreferrer">
+                            Australian Bureau of Statistics (ABS) &mdash; National Population and State Population (March 2026)
                         </a>
                     </li>
                 </ul>
