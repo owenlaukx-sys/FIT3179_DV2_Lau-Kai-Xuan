@@ -1,0 +1,260 @@
+---
+title: "FIT3179_DV2_Aggregator"
+author: "Lau Kai Xuan"
+date: "2026-10-10"
+output: html_document
+---
+
+# Setup 
+Prior the running anything below, you must set your working directory to this folder's directory. 
+
+```{r}
+# Load package
+# Make sure you install.packages in a separate R script to install the relevant packages
+library(tidyverse)
+```
+
+!! READ THIS: Make sure you clear / reset your global environment variables before running each block of code since each block is designed to work independently of each other. 
+
+# State Event Proportions
+Used by the Donut chart to graph the proportions of event categories in each state, also used by the lollipop chart to get the total number of events in state. 
+```{r}
+## For Choropleth Map - State-level Proportion of Events over Total Events in Australia
+# Read the original event-level CSV
+events <- read.csv(
+  "Australian_Cultural_Events_List_2026.csv",
+  stringsAsFactors = FALSE
+)
+
+# Aggregate events by State
+state_proportions <- events %>%
+  group_by(State) %>%
+  summarise(
+    Event_Count = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    Proportion = Event_Count / sum(Event_Count)
+  )
+
+# Output the aggregated CSV
+write.csv(
+  state_proportions,
+  "state_event_proportions.csv",
+  row.names = FALSE
+)
+
+# Display the result
+print(state_proportions)
+```
+
+# State Category Count 
+Aggregates the number of instances of events under category Arts & Culture, Sports and Indigenous for every State and Territory in Australia. Used for the radar chart. 
+
+```{r}
+# 1. Read the original events dataset
+input_file <- "Australian_Cultural_Events_List_2026.csv"
+
+events <- read_csv(
+  input_file,
+  show_col_types = FALSE
+)
+
+# 2. Define the eight Australian states and territories
+state_order <- c(
+  "Australian Capital Territory",
+  "New South Wales",
+  "Northern Territory",
+  "Queensland",
+  "South Australia",
+  "Tasmania",
+  "Victoria",
+  "Western Australia"
+)
+
+# Support both full state names and common abbreviations
+state_lookup <- c(
+  "ACT" = "Australian Capital Territory",
+  "NSW" = "New South Wales",
+  "NT"  = "Northern Territory",
+  "QLD" = "Queensland",
+  "SA"  = "South Australia",
+  "TAS" = "Tasmania",
+  "VIC" = "Victoria",
+  "WA"  = "Western Australia"
+)
+
+# 3. Select the three categories used in the radar chart
+categories <- c(
+  "Arts & Culture",
+  "Sports",
+  "Indigenous"
+)
+
+# 4. Standardise state names and filter the required categories
+events_filtered <- events %>%
+  mutate(
+    State = trimws(as.character(State)),
+    State = if_else(
+      State %in% names(state_lookup),
+      unname(state_lookup[State]),
+      State
+    ),
+    Category = trimws(as.character(Category))
+  ) %>%
+  filter(
+    State %in% state_order,
+    Category %in% categories
+  )
+
+# 5. Count events for each state and category
+state_category_counts <- events_filtered %>%
+  count(State, Category, name = "Event_Count")
+
+# 6. Create all 24 combinations and fill missing counts with zero
+radar_data <- expand_grid(
+  State = state_order,
+  Category = categories
+) %>%
+  left_join(
+    state_category_counts,
+    by = c("State", "Category")
+  ) %>%
+  mutate(
+    Event_Count = replace_na(Event_Count, 0L),
+    State = factor(State, levels = state_order),
+    Category = factor(Category, levels = categories)
+  ) %>%
+  arrange(State, Category) %>%
+  mutate(
+    State = as.character(State),
+    Category = as.character(Category)
+  )
+
+# 7. Export the aggregated CSV
+output_file <- "radar_state_category_counts.csv"
+
+write_csv(radar_data, output_file)
+
+# 8. Display the result for verification
+print(radar_data, n = 24)
+
+cat("\nCSV successfully generated at:", output_file, "\n")
+cat("Number of rows:", nrow(radar_data), "\n")
+
+# Check that all combinations are present
+stopifnot(
+  nrow(radar_data) == 24,
+  !anyDuplicated(radar_data[c("State", "Category")]),
+  all(radar_data$Event_Count >= 0)
+)
+```
+
+# Daily Event Density in 2026
+Aggregates the sum of all events occurring on all dates from the year 2026, calculating as the event density. This counts events taking place on that day, not just the starting dates, which will overlay events spanning multiple days or months. 
+
+```{r}
+# 1. Read the original event dataset
+events <- read_csv(
+  "Australian_Cultural_Events_List_2026.csv",
+  show_col_types = FALSE
+)
+
+# 2. Convert event dates and prepare the date ranges
+events <- events %>%
+  mutate(
+    Start_Date = as.Date(Start_Date),
+    End_Date = as.Date(End_Date)
+  ) %>%
+  filter(
+    !is.na(Start_Date),
+    !is.na(End_Date),
+    Start_Date <= as.Date("2026-12-31"),
+    End_Date >= as.Date("2026-01-01"),
+    Start_Date <= End_Date
+  ) %>%
+  mutate(
+    # Clip dates to 2026 for counting only
+    Count_Start = pmax(Start_Date, as.Date("2026-01-01")),
+    Count_End   = pmin(End_Date, as.Date("2026-12-31"))
+  )
+
+# 3. Expand each event into its active dates in 2026
+event_dates <- events %>%
+  rowwise() %>%
+  mutate(
+    Date = list(seq.Date(
+      from = Count_Start,
+      to = Count_End,
+      by = "day"
+    ))
+  ) %>%
+  ungroup() %>%
+  select(Date) %>%
+  unnest(Date)
+
+# 4. Count the number of active events for each day
+daily_counts <- event_dates %>%
+  count(Date, name = "Event_Count")
+
+# 5. Generate a complete calendar for 2026,
+#    including days with zero active events
+calendar <- tibble(
+  Date = seq.Date(
+    from = as.Date("2026-01-01"),
+    to = as.Date("2026-12-31"),
+    by = "day"
+  )
+) %>%
+  left_join(daily_counts, by = "Date") %>%
+  mutate(
+    Event_Count = replace_na(Event_Count, 0L),
+    Month = month(Date, label = TRUE, abbr = FALSE),
+    Month_Number = month(Date),
+    Day = day(Date),
+
+    # Monday = 0, Tuesday = 1, ..., Sunday = 6
+    Weekday = wday(Date, week_start = 1) - 1,
+    Weekday_Label = factor(
+      c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")[Weekday + 1],
+      levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+    ),
+
+    # Week column within each month, starting at 0.
+    # Monday is the first day of each calendar week.
+    Week_Of_Month = (
+      Day + wday(floor_date(Date, "month"), week_start = 1) - 2
+    ) %/% 7
+  ) %>%
+  select(
+    Date,
+    Event_Count,
+    Month,
+    Month_Number,
+    Day,
+    Weekday,
+    Weekday_Label,
+    Week_Of_Month
+  )
+
+# 6. Export the aggregated dataset to the same directory
+write_csv(calendar, "event_density_daily_2026.csv")
+
+# 7. Optional: inspect the output
+print(calendar, n = 10)
+cat("\nRows exported:", nrow(calendar), "\n")
+cat("Total days:", n_distinct(calendar$Date), "\n")
+```
+
+# Calculate the average event duration 
+```{r}
+events <- read_csv(
+  "Australian_Cultural_Events_List_2026.csv",
+  show_col_types = FALSE
+)
+
+median(events$Duration_Days)
+mean(events$Duration_Days)
+```
+
+
